@@ -9,7 +9,7 @@ init();
 
 function init() {
     profiles.forEach(profile => {
-        contactList.insertAdjacentHTML("afterbegin", renderProfileList(profile))
+        contactList.insertAdjacentHTML("afterbegin", renderProfile(profile))
     })
 
     contactList.addEventListener("click", contactListClickHandler)
@@ -25,7 +25,7 @@ function contactListClickHandler(e) {
     profiles.forEach(profile => {
         if (name === profile.name) {
             destroyContactList();
-            contactList.insertAdjacentHTML("afterbegin", renderProfileList(profile));
+            contactList.insertAdjacentHTML("afterbegin", renderProfile(profile));
             renderProfileListStructure();
             renderFriends(profile.friends);
             renderNonFriends(profile.friends);
@@ -49,7 +49,7 @@ function renderProfileListStructure() {
     profileList.insertAdjacentHTML("beforeend", profileListStructure);
 }
 
-function renderProfileList(profile) {
+function renderProfile(profile) {
     return `
             <li>
                 <strong>${profile.name}</strong>
@@ -128,5 +128,6 @@ function destroyContactList() {
 
 function destroyProfilesList() {
     profileList.innerHTML = "";
+    contactList.innerHTML = "";
     containerListView.style.background = "white"
 }
